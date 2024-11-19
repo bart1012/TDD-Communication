@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TDDCommunicationChallenge",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TDD.Tests", "TDD.Tests\TDD.Tests.csproj", "{BC6E3EE6-ACCC-415E-837F-D6E9E3743C95}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sorting", "Sorting\Sorting.csproj", "{4429B603-17CD-416A-96E1-B890EEF5FB12}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{BC6E3EE6-ACCC-415E-837F-D6E9E3743C95}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BC6E3EE6-ACCC-415E-837F-D6E9E3743C95}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BC6E3EE6-ACCC-415E-837F-D6E9E3743C95}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4429B603-17CD-416A-96E1-B890EEF5FB12}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4429B603-17CD-416A-96E1-B890EEF5FB12}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4429B603-17CD-416A-96E1-B890EEF5FB12}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4429B603-17CD-416A-96E1-B890EEF5FB12}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

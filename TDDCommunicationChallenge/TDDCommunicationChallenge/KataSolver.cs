@@ -147,7 +147,7 @@ public class KataSolver
                 returnString = "Cheese party!";
                 break;
             }
-            
+
             if (distanceMouseFromCheese <= 0 && distanceCatFromCheese > 0)
             {
                 returnString = "Cheese";
