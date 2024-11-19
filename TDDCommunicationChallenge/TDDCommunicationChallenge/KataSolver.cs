@@ -25,4 +25,21 @@ public class KataSolver
 
         return mean;
     }
+
+    public int SumAsciiValues(string text)
+    {
+        if (text is null) return 0;
+
+        int sumAsciiValue = 0;
+
+        foreach (char letter in text)
+        {
+            if (char.IsLetterOrDigit(letter))
+            {
+                sumAsciiValue += letter;
+            }
+        }
+
+        return sumAsciiValue;
+    }
 }

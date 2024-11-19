@@ -23,6 +23,17 @@ public class KataSolverTests
         new object[] { new int[] { }, 0 }
     };
 
+    private static readonly object[] TestCasesForSumAsciiValues =
+  {
+        new object[] { "northcoders", 1195 },
+        new object[] { "Northcoders", 1163},
+        new object[] { "a", 97 },
+        new object[] { "", 0 },
+        new object[] { null, 0 },
+        new object[] { "a@", 97 },
+        new object[] { "a9", 97+57 }
+    };
+
     [Test]
     [TestCaseSource(nameof(TestCasesForNumberSum))]
     public void NumberSum_returns_intended_number(int[] input, int expectedResult)
@@ -47,6 +58,20 @@ public class KataSolverTests
 
         //Act
         double calcuatedResult = kataSolver.CalculateMean(input);
+
+        //Assert
+        Assert.AreEqual(expectedResult, calcuatedResult);
+    }
+
+    [Test]
+    [TestCaseSource(nameof(TestCasesForSumAsciiValues))]
+    public void SumAsciiValues_returnsIntSum(string input, int expectedResult)
+    {
+        //Arrange
+        kataSolver = new();
+
+        //Act
+        int calcuatedResult = kataSolver.SumAsciiValues(input);
 
         //Assert
         Assert.AreEqual(expectedResult, calcuatedResult);
