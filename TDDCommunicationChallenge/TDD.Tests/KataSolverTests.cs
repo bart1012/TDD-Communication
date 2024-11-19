@@ -24,7 +24,7 @@ public class KataSolverTests
     };
 
     private static readonly object[] TestCasesForSumAsciiValues =
-  {
+    {
         new object[] { "northcoders", 1195 },
         new object[] { "Northcoders", 1163},
         new object[] { "a", 97 },
@@ -32,6 +32,15 @@ public class KataSolverTests
         new object[] { null, 0 },
         new object[] { "a@", 97 },
         new object[] { "a9", 97+57 }
+    };
+
+    private static readonly object[] TestCasesForEvaluateLecture =
+    {
+        new object[] { "LLLDDD", "NEUTRAL" },
+        new object[] { "", "NEUTRAL" },
+        new object[] { "LLLLDDD", "DISLIKE" },
+        new object[] { "LLLDDDD", "LIKE" },
+        new object[] { null, "NEUTRAL" },
     };
 
     [Test]
@@ -75,5 +84,19 @@ public class KataSolverTests
 
         //Assert
         Assert.AreEqual(expectedResult, calcuatedResult);
+    }
+
+    [Test]
+    [TestCaseSource(nameof(TestCasesForEvaluateLecture))]
+    public void EvaluateLecture_ReturnsEvaluation(string input, string expectedResult)
+    {
+        //Arrange
+        kataSolver = new();
+
+        //Act
+        string methodCallResult = kataSolver.EvaluateLecture(input);
+
+        //Assert
+        Assert.That(methodCallResult, Is.EqualTo(expectedResult));
     }
 }

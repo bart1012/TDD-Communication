@@ -42,4 +42,38 @@ public class KataSolver
 
         return sumAsciiValue;
     }
+
+    public string EvaluateLecture(string input)
+    {
+        if (input is null)
+            return "NEUTRAL";
+
+        string inputWithoutDoubles = input.Replace("LL", "").Replace("DD", "");
+
+        int likeCounter = 0;
+        int dislikeCounter = 0;
+
+        foreach (char letter in inputWithoutDoubles)
+        {
+            if (letter == 'L')
+            {
+                likeCounter++;
+            }
+            else if (letter == 'D')
+            {
+                dislikeCounter++;
+            }
+        }
+
+        int likesMinusDislikes = likeCounter - dislikeCounter;
+
+        string returnString = (likesMinusDislikes) switch
+        {
+            (>0) => "LIKE",
+            (<0) => "DISLIKE",
+            _ => "NEUTRAL"
+        };
+
+        return returnString;
+    }
 }
