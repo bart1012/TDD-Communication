@@ -1,4 +1,6 @@
-﻿namespace TDDCommunicationChallenge;
+﻿using System.Text;
+
+namespace TDDCommunicationChallenge;
 
 public class KataSolver
 {
@@ -43,6 +45,36 @@ public class KataSolver
         return sumAsciiValue;
     }
 
+    public string CreateCaesarCipher(string text)
+    {
+        StringBuilder stringBuilder = new();
+        string alphabet;
+
+
+        foreach (char letter in text)
+        {
+            if (char.IsLetter(letter))
+            {
+                if (char.IsLower(letter))
+                {
+                    alphabet = "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz";
+                }
+                else
+                {
+                    alphabet = "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz".ToUpper();
+                }
+                int index = alphabet.IndexOf(letter);
+                stringBuilder.Append(alphabet[index + 13]);
+            }
+            else
+            {
+                stringBuilder.Append(letter);
+            }
+        }
+
+        return stringBuilder.ToString();
+    }
+
     public string EvaluateLecture(string input)
     {
         if (input is null)
@@ -69,8 +101,8 @@ public class KataSolver
 
         string returnString = (likesMinusDislikes) switch
         {
-            (>0) => "LIKE",
-            (<0) => "DISLIKE",
+            (> 0) => "LIKE",
+            (< 0) => "DISLIKE",
             _ => "NEUTRAL"
         };
 

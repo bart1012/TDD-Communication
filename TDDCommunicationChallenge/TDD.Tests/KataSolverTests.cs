@@ -43,6 +43,15 @@ public class KataSolverTests
         new object[] { null, "NEUTRAL" },
     };
 
+    private static readonly object[] TestCasesForCreateCaesarCipher =
+{
+        new object[] { "northcoders", "abegupbqref" },
+        new object[] { "", "" },
+        new object[] { "abegupbqref", "northcoders" },
+        new object[] { "Northcoders", "Abegupbqref" },
+        new object[] { "Northcoders 13", "Abegupbqref 13" },
+    };
+
     [Test]
     [TestCaseSource(nameof(TestCasesForNumberSum))]
     public void NumberSum_returns_intended_number(int[] input, int expectedResult)
@@ -95,6 +104,20 @@ public class KataSolverTests
 
         //Act
         string methodCallResult = kataSolver.EvaluateLecture(input);
+
+        //Assert
+        Assert.That(methodCallResult, Is.EqualTo(expectedResult));
+    }
+
+    [Test]
+    [TestCaseSource(nameof(TestCasesForCreateCaesarCipher))]
+    public void CreateCaesarCipher_ReturnsEncodedString(string input, string expectedResult)
+    {
+        //Arrange
+        kataSolver = new();
+
+        //Act
+        string methodCallResult = kataSolver.CreateCaesarCipher(input);
 
         //Assert
         Assert.That(methodCallResult, Is.EqualTo(expectedResult));
