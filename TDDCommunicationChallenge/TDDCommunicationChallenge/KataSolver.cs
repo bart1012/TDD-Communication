@@ -108,4 +108,59 @@ public class KataSolver
 
         return returnString;
     }
+
+    public string HuntingCheese(string map, int catSpeed, int mouseSpeed)
+    {
+        //"---K-----M---C--", 6, 0  // should return "No cheese"
+        //"---K-----M---C--", 0, 6  // should return "Cheese"
+        //"---K-----M---C--", 1, 1  // should return "Cheese"
+        //"---K-----M---C--", 3, 1 // should return "No cheese"
+        //"---K---M---C--", 2, 1  // should return "Cheese party!"
+
+        int indexOfCheese = map.IndexOf('C');
+
+        int indexOfMouse = map.IndexOf('M');
+        int indexOfCat = map.IndexOf('K');
+
+        int distanceMouseFromCheese = indexOfCheese - indexOfMouse;
+        int distanceCatFromCheese = indexOfCheese - indexOfCat;
+
+        // Avoids having to put in an arbitrary, large limit for 'i' in the for loop
+        int maxTurnsFromMouseToCheese = 0;
+        if (mouseSpeed > 0)
+            maxTurnsFromMouseToCheese = (int)(Math.Ceiling((double)distanceMouseFromCheese / mouseSpeed));
+
+        int maxTurnsFromCatToCheese = 0;
+        if (catSpeed > 0)
+            maxTurnsFromCatToCheese = (int)(Math.Ceiling((double)distanceCatFromCheese / catSpeed));
+
+        int maxTurnsRequired = Math.Max(maxTurnsFromMouseToCheese, maxTurnsFromCatToCheese);
+
+        string returnString = "";
+        for (int i = 0; i < maxTurnsRequired; i++)
+        {
+            distanceMouseFromCheese -= mouseSpeed;
+            distanceCatFromCheese -= catSpeed;
+
+            if (distanceMouseFromCheese <= 0 && distanceCatFromCheese <= 0)
+            {
+                returnString = "Cheese party!";
+                break;
+            }
+            
+            if (distanceMouseFromCheese <= 0 && distanceCatFromCheese > 0)
+            {
+                returnString = "Cheese";
+                break;
+            }
+
+            if (distanceMouseFromCheese > 0 && distanceCatFromCheese <= distanceMouseFromCheese)
+            {
+                returnString = "No cheese";
+                break;
+            }
+        }
+
+        return returnString;
+    }
 }

@@ -44,12 +44,25 @@ public class KataSolverTests
     };
 
     private static readonly object[] TestCasesForCreateCaesarCipher =
-{
+    {
         new object[] { "northcoders", "abegupbqref" },
         new object[] { "", "" },
         new object[] { "abegupbqref", "northcoders" },
         new object[] { "Northcoders", "Abegupbqref" },
         new object[] { "Northcoders 13", "Abegupbqref 13" },
+    };
+
+    private static readonly object[] TestCasesForHuntingCheese =
+    {
+        new object[] { "---K-----M---C--", 6, 0, "No cheese" },
+        new object[] { "---K-----M---C--", 0, 6, "Cheese" },
+        new object[] { "---K-----M---C--", 1, 1, "Cheese" },
+        new object[] { "---K-----M---C--", 3, 1, "No cheese" },
+        new object[] { "---K---M---C--", 2, 1, "Cheese party!" },
+
+        // Reversed speeds and mixed positions
+        //new object[] { "---M-----K---C--", 6, 6, "Cheese" },
+        //new object[] { "---M-----K---C--", -1, 1, "No cheese" }
     };
 
     [Test]
@@ -118,6 +131,20 @@ public class KataSolverTests
 
         //Act
         string methodCallResult = kataSolver.CreateCaesarCipher(input);
+
+        //Assert
+        Assert.That(methodCallResult, Is.EqualTo(expectedResult));
+    }
+
+    [Test]
+    [TestCaseSource(nameof(TestCasesForHuntingCheese))]
+    public void HuntingCheese_EvaluatesHunt(string map, int catSpeed, int mouseSpeed, string expectedResult)
+    {
+        //Arrange
+        kataSolver = new();
+
+        //Act
+        string methodCallResult = kataSolver.HuntingCheese(map, catSpeed, mouseSpeed);
 
         //Assert
         Assert.That(methodCallResult, Is.EqualTo(expectedResult));
